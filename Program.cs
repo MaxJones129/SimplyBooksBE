@@ -43,6 +43,16 @@ app.MapGet("/books", (SimplyBooksDbContext db) =>
     return db.Books.ToList();
 });
 
+app.MapGet("/authors/{id}", (SimplyBooksDbContext db, int id) =>
+{
+    var author = db.Authors.FirstOrDefault(a => a.Id == id);
+    if (author == null)
+    {
+        return Results.NotFound();
+    }
+    return Results.Ok(author);
+});
+
 app.MapGet("/authors/favorite", (SimplyBooksDbContext db) =>
 {
     var favoriteAuthors = db.Authors.Where(a => a.Favorite == true).ToList(); // Filter favorite authors synchronously
@@ -61,6 +71,16 @@ app.MapPost("/books", (SimplyBooksDbContext db, Book book) =>
     db.Books.Add(book);
     db.SaveChanges();  // Save changes synchronously
     return Results.Created($"/books/{book.Id}", book);
+});
+
+app.MapGet("/books/{id}", (SimplyBooksDbContext db, int id) =>
+{
+    var book = db.Books.FirstOrDefault(b => b.Id == id);
+    if (book == null)
+    {
+        return Results.NotFound();
+    }
+    return Results.Ok(book);
 });
 
 app.MapPut("/authors/{id}", (SimplyBooksDbContext db, int id, Author updatedAuthor) =>
