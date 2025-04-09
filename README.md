@@ -75,3 +75,7 @@ You can interact with and explore the SimplyBooks API using the official Postman
 The source code for this project is available on GitHub:
 
 [SimplyBooks GitHub Repository](https://github.com/MaxJones129/SimplyBooksBE.git)
+
+## **Loom Video for Project**
+
+[Loom](https://www.loom.com/share/07870e1188ac4b978e62a50a9a4ca364)
